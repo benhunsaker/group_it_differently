@@ -30,7 +30,7 @@ const parser = CSVParse({ columns: true }, (err, mappings) => {
         const entities = [];
 
         Object.keys(mapping)
-            .filter((key) => !["Last Name", "Entity", "Email", "Notes"].includes(key.trim()))
+            .filter((key) => !["Last Name", "Entity", "Email Address", "Notes"].includes(key.trim()))
             .forEach((fund) => {
                 const cleaned_fund = fund.trim();
                 if (mapping[fund]) {
@@ -40,7 +40,7 @@ const parser = CSVParse({ columns: true }, (err, mappings) => {
 
         const key = funds.join("--");
         if (fundCombos[key]) {
-            fundCombos[key].emails.push(mapping["Email"]);
+            fundCombos[key].emails.push(mapping["Email Address"]);
             fundCombos[key].entities.push(mapping["Entity"]);
         }
         else {
